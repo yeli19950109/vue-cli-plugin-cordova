@@ -4,7 +4,7 @@ module.exports = (api, options, rootOptions) => {
     api.extendPackage({
         scripts: {
             'cordova-dev': 'vue-cli-service build --mode development --dest www',
-            'cordova-prod': 'vue-cli-service build --dest www',
+            'cordova-prod': 'vue-cli-service build --dest www'
         },
         dependencies: {
             'cordova-android': '^7.1.1',
@@ -29,6 +29,8 @@ module.exports = (api, options, rootOptions) => {
             ]
         }
     });
+
+    api.render('./templates', options);
 
     api.onCreateComplete(() => {
         // .gitignore - not included in files on postProcessFiles
@@ -58,7 +60,6 @@ module.exports = (api, options, rootOptions) => {
             "insert_final_newline = false\n" +
             "trim_trailing_whitespace = false"
         )
-        api.render('./template', options)
     })
 };
 
