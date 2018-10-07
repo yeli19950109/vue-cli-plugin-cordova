@@ -38,10 +38,10 @@ module.exports = (api, options) => {
     });
 
     api.configureDevServer((config) => {
-        config.before = (app) => {
-            app.get('/cordova.js', function (req, res) {
+        config.before = function(app) {
+            app.get('/cordova.js', function(req, res) {
                 res.setHeader('Content-Type', 'application/javascript');
-                res.write('');
+                res.write('window.cordova=undefined;');
                 res.end('');
             });
         };
