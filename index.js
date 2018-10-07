@@ -37,13 +37,11 @@ module.exports = (api, options) => {
 
     });
 
-    api.configureDevServer((config) => {
-        config.before = function(app) {
-            app.get('/cordova.js', function(req, res) {
-                res.setHeader('Content-Type', 'application/javascript');
-                res.write('window.cordova=undefined;');
-                res.end('');
-            });
-        };
+    api.configureDevServer((app, server) => {
+        app.get('/cordova.js', (req, res) => {
+            res.setHeader('Content-Type', 'application/javascript');
+            res.write('window.cordova=undefined;');
+            res.end('');
+        });
     })
 };
